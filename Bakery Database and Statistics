@@ -1,0 +1,31 @@
+--Create a bakery database.
+CREATE TABLE Bakery (id INTEGER PRIMARY KEY, item TEXT, flavor TEXT, quantity INTEGER, price INTEGER);
+
+INSERT INTO Bakery VALUES (1, "Cookie", "Sugar", 30, 2.50);
+INSERT INTO Bakery VALUES (2, "Cookie", "Chocolate Chip", 50, 3.50);
+INSERT INTO Bakery VALUES (3, "Cookie", "Macadamia", 20, 3.50);
+INSERT INTO Bakery VALUES (4, "Cookie", "Oatmeal Raisin", 20, 3.50);
+INSERT INTO Bakery VALUES (5, "Cupcake", "Vanilla", 40, 5);
+INSERT INTO Bakery VALUES (6, "Cupcake", "Chocolate", 40, 5);
+INSERT INTO Bakery VALUES (7, "Cupcake", "Red Velvet", 40, 5.50);
+INSERT INTO Bakery VALUES (8, "Cupcake", "Strawberry Shortcake", 40, 7);
+INSERT INTO Bakery VALUES (9, "Muffin", "Banana Chocolate Chip", 30, 6.50);
+INSERT INTO Bakery VALUES (10, "Muffin", "Blueberry", 30, 6.50);
+INSERT INTO Bakery VALUES (11, "Croissant", "Plain", 50, 7);
+INSERT INTO Bakery VALUES (12, "Croissant", "Pain Au Chocolat", 50, 8);
+INSERT INTO Bakery VALUES (13, "Croissant", "Pain Aux Raisins", 40, 8);
+INSERT INTO Bakery VALUES (14, "Donut", "Glazed", 50, 8);
+INSERT INTO Bakery VALUES (15, "Donut", "Donut Hole", 50, 7);
+
+--Display the database ordered by price.
+SELECT * FROM Bakery ORDER BY price;
+
+--How many of each baked good is offered? 
+SELECT SUM(quantity) as total_number_of_cookies_offered FROM Bakery WHERE item IN ("Cookie");
+SELECT SUM(quantity) as total_number_of_cupcakes_offered FROM Bakery WHERE item IN ("Cupcake");
+SELECT SUM (quantity) as total_number_of_muffins_offered FROM Bakery WHERE item IN ("Muffin");
+SELECT SUM(quantity) as total_number_of_croissants_offered FROM Bakery WHERE item IN ("Croissant");
+SELECT SUM (quantity) as total_number_of_donuts_offered FROM Bakery WHERE item IN ("Donut");
+
+--What is the total number of baked goods offered?
+Select SUM(quantity) as total_quantity_of_baked_goods from Bakery;
