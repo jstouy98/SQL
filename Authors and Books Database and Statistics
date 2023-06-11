@@ -1,0 +1,41 @@
+--Create a database of authors.
+CREATE TABLE authors (id INTEGER PRIMARY KEY, name TEXT);
+
+INSERT INTO authors VALUES (1, "Stephen Covey");
+INSERT INTO authors VALUES (2, "James Clear");
+INSERT INTO authors VALUES (3, "Malcolm Gladwell");
+INSERT INTO authors VALUES (4, "James Patterson");
+INSERT INTO authors VALUES (5, "Suzanne Collins");
+INSERT INTO authors VALUES (6, "James Dashner");
+
+--Create a database of books written by each of the authors.
+CREATE TABLE books (id INTEGER PRIMARY KEY, author_id INTEGER, title TEXT, genre TEXT, year_published INTEGER);
+
+INSERT INTO books VALUES (1, 1, "The 7 Habits of Highly Effective People", "Self-Help", 1989);
+INSERT INTO books VALUES (2, 1, "The 7 Habits of Highly Effective Families", "Self-Help", 1997);
+INSERT INTO books VALUES (3, 1, "The 8th Habit: From Effectiveness to Greatness", "Self-Help", 2004);
+INSERT INTO books VALUES (4, 2, "Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones", "Self-Help", 2018);
+INSERT INTO books VALUES (5, 3, "Outliers", "Self-Help", 2008);
+INSERT INTO books VALUES (6, 3, "The Tipping Point: How Little Things Can Make A Big Difference", "Self-Help", 2000);
+INSERT INTO books VALUES (7, 3, "Blink: The Power of Thinking Without Thinking", "Self-Help", 2005);
+INSERT INTO books VALUES (8, 4, "Maximum Ride: The Angel Experiment", "Science Fiction", 2005);
+INSERT INTO books VALUES (9, 4, "Witch & Wizard", "Science Fiction", 2013);
+INSERT INTO books VALUES (10, 4, "The Shadow", "Science Fiction", 2021);
+INSERT INTO books VALUES (11, 5, "The Hunger Games", "Science Fiction", 2008);
+INSERT INTO books VALUES (12, 5, "Catching Fire", "Science Fiction", 2009); 
+INSERT INTO books VALUES (13, 5, "Mockingjay", "Science Fiction", 2010);
+INSERT INTO books VALUES (14, 6, "The Maze Runner", "Science Fiction", 2009);
+INSERT INTO books VALUES (15, 6, "The Scorch Trials", "Science Fiction", 2010);
+INSERT INTO books VALUES (16, 6, "The Death Cure", "Science Fiction", 2011);
+
+--Join the databases together showcasing which books were created by which author and the genre of each book.
+SELECT authors.name, books.title, books.genre FROM authors
+    JOIN books
+    ON books.author_id = authors.id;
+
+--Join the databases together showcasing the title of the books, the associated author, the genre, and the published year of books published after 2003, ordered by publish year.  
+SELECT authors.name, books.title, books.genre, books.year_published FROM authors
+    JOIN books
+    ON books.author_id = authors.id
+    WHERE year_published > 2003
+    ORDER BY year_published DESC;
